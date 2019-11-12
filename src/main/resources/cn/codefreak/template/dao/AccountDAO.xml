@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.codefreak.template.dao.AccountDAO">
+    <update id="reduceAccountBalance">
+        update t_account set balance = balance - #{balance} where username = #{username}
+    </update>
+    <select id="getAccountBalance" parameterType="string" resultType="int">
+        select balance from t_account where username = #{username}
+    </select>
+</mapper>

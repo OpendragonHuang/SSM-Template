@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+    <p>SSM+Thymeleaf 整合</p>
+    <div id="purchaseForm">
+        用户名：<input type="text" name="username" id="username">
+        ISBN：<input type="text" name="isbn" id="isbn"/>
+        数量：<input type="number" name="num" id="num"/>
+        <button id="purchaseButton">购买</button>
+    </div>
+    <script type="text/javascript" src="/assets/js/jquery-3.4.1.min.js"></script>
+    <script>
+        $('#purchaseButton').click(function () {
+            var data = {};
+            data.username = $('#username').val();
+            data.isbn = $('#isbn').val();
+            data.num = $('#num').val();
+            $.ajax({
+                url:"/purchase",
+                type:"post",
+                contentType:"application/json",
+                data:JSON.stringify(data),
+                async:true,
+                success:function(result){
+                    var res = JSON.parse(result);
+                    alert(res.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
